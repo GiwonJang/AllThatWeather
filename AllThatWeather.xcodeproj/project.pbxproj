@@ -12,6 +12,12 @@
 		3C41B8311CEB5195007C7C13 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C41B82F1CEB5195007C7C13 /* MainMenu.xib */; };
 		3C41B83C1CEB5195007C7C13 /* AllThatWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B83B1CEB5195007C7C13 /* AllThatWeatherTests.swift */; };
 		3C41B8471CEB5195007C7C13 /* AllThatWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B8461CEB5195007C7C13 /* AllThatWeatherUITests.swift */; };
+		3C41B8551CEB51CB007C7C13 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 3C41B8541CEB51CB007C7C13 /* .gitignore */; };
+		3C41B85B1CEB5214007C7C13 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B8561CEB5214007C7C13 /* PreferencesWindow.swift */; };
+		3C41B85C1CEB5214007C7C13 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C41B8571CEB5214007C7C13 /* PreferencesWindow.xib */; };
+		3C41B85D1CEB5214007C7C13 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B8581CEB5214007C7C13 /* StatusMenuController.swift */; };
+		3C41B85E1CEB5214007C7C13 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B8591CEB5214007C7C13 /* WeatherAPI.swift */; };
+		3C41B85F1CEB5214007C7C13 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41B85A1CEB5214007C7C13 /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +49,12 @@
 		3C41B8421CEB5195007C7C13 /* AllThatWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllThatWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C41B8461CEB5195007C7C13 /* AllThatWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllThatWeatherUITests.swift; sourceTree = "<group>"; };
 		3C41B8481CEB5195007C7C13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C41B8541CEB51CB007C7C13 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3C41B8561CEB5214007C7C13 /* PreferencesWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		3C41B8571CEB5214007C7C13 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		3C41B8581CEB5214007C7C13 /* StatusMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
+		3C41B8591CEB5214007C7C13 /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		3C41B85A1CEB5214007C7C13 /* WeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +85,7 @@
 		3C41B81F1CEB5195007C7C13 = {
 			isa = PBXGroup;
 			children = (
+				3C41B8541CEB51CB007C7C13 /* .gitignore */,
 				3C41B82A1CEB5195007C7C13 /* AllThatWeather */,
 				3C41B83A1CEB5195007C7C13 /* AllThatWeatherTests */,
 				3C41B8451CEB5195007C7C13 /* AllThatWeatherUITests */,
@@ -93,6 +106,11 @@
 		3C41B82A1CEB5195007C7C13 /* AllThatWeather */ = {
 			isa = PBXGroup;
 			children = (
+				3C41B8561CEB5214007C7C13 /* PreferencesWindow.swift */,
+				3C41B8571CEB5214007C7C13 /* PreferencesWindow.xib */,
+				3C41B8581CEB5214007C7C13 /* StatusMenuController.swift */,
+				3C41B8591CEB5214007C7C13 /* WeatherAPI.swift */,
+				3C41B85A1CEB5214007C7C13 /* WeatherView.swift */,
 				3C41B82B1CEB5195007C7C13 /* AppDelegate.swift */,
 				3C41B82D1CEB5195007C7C13 /* Assets.xcassets */,
 				3C41B82F1CEB5195007C7C13 /* MainMenu.xib */,
@@ -223,7 +241,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C41B85C1CEB5214007C7C13 /* PreferencesWindow.xib in Resources */,
 				3C41B82E1CEB5195007C7C13 /* Assets.xcassets in Resources */,
+				3C41B8551CEB51CB007C7C13 /* .gitignore in Resources */,
 				3C41B8311CEB5195007C7C13 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C41B85F1CEB5214007C7C13 /* WeatherView.swift in Sources */,
+				3C41B85D1CEB5214007C7C13 /* StatusMenuController.swift in Sources */,
+				3C41B85E1CEB5214007C7C13 /* WeatherAPI.swift in Sources */,
+				3C41B85B1CEB5214007C7C13 /* PreferencesWindow.swift in Sources */,
 				3C41B82C1CEB5195007C7C13 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
