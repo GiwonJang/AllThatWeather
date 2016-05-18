@@ -1,6 +1,6 @@
 //
 //  WeatherAPI.swift
-//  WeahterBar
+//  AllThatWeahter
 //
 //  Created by JANGGIWON on May 17, 2016.
 //  Copyright © 2016 Handicraft. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  StatusMenuController.swift
-//  WeahterBar
+//  AllThatWeahter
 //
 //  Created by JANGGIWON on May 17, 2016.
 //  Copyright © 2016 Handicraft. All rights reserved.
@@ -65,6 +65,8 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 		let city = defaults.stringForKey("city") ?? DEFAULT_CITY
 		weatherAPI.fetchWeather(city) { weather in
 			self.weatherView.update(weather)
+            //self.statusItem.button!.image = NSImage(named: weather.icon)
+            //self.statusItem.button!.title = String(weather.currentTempInCelsius)
 		}
 	}
 	
