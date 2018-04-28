@@ -16,10 +16,10 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 	var weatherMenuItem: NSMenuItem!
 	var preferencesWindow: PreferencesWindow!
 	
-	let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+	let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
 	var weatherAPI: WeatherAPI!
 	
-	var refreshTimer: NSTimer!
+	var refreshTimer: Timer!
 	
 	deinit {
 		NSLog("StatusMenuController.deinit called.")
@@ -28,14 +28,14 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 	
 	override func awakeFromNib() {
 		let icon = NSImage(named: "statusIcon")
-		icon?.template = true
+		icon?.isTemplate = true
 		statusItem.image = icon
 		statusItem.menu = statusMenu
 		
 		//weatherAPI = WeatherAPI(delegate: self)
 		weatherAPI = WeatherAPI()
 		
-		weatherMenuItem = statusMenu.itemWithTitle("Weather")
+		weatherMenuItem = statusMenu.item(withTitle: "Weather")
 		weatherMenuItem.view = weatherView
 		
 		preferencesWindow = PreferencesWindow()
@@ -46,14 +46,14 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 	}
 	
 	func startRefreshTimer() {
-		refreshTimer = NSTimer.scheduledTimerWithTimeInterval(
-			1.0 * 60,
+		refreshTimer = Timer.scheduledTimer(
+			timeInterval: 1.0 * 60,
 			target: self,
 			selector: #selector(StatusMenuController.updateWeather),
 			userInfo: nil,
 			repeats: true
 		)
-		NSRunLoop.mainRunLoop().addTimer(refreshTimer, forMode: NSRunLoopCommonModes)
+		RunLoop.main.add(refreshTimer, forMode: RunLoopMode.commonModes)
 	}
 	
 	func stopRefreshTimer() {
@@ -61,8 +61,8 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 	}
 	
 	func updateWeather() {
-		let defaults = NSUserDefaults.standardUserDefaults()
-		let city = defaults.stringForKey("city") ?? DEFAULT_CITY
+		let defaults = UserDefaults.standard
+		let city = defaults.string(forKey: "city") ?? DEFAULT_CITY
 		weatherAPI.fetchWeather(city) { weather in
 			self.weatherView.update(weather)
             //self.statusItem.button!.image = NSImage(named: weather.icon)
@@ -70,11 +70,11 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 		}
 	}
 	
-	@IBAction func quitClicked(sender: NSMenuItem) {
-		NSApplication.sharedApplication().terminate(self)
+	@IBAction func quitClicked(_ sender: NSMenuItem) {
+		NSApplication.shared().terminate(self)
 	}
 	
-	@IBAction func updateClicked(sender: NSMenuItem) {
+	@IBAction func updateClicked(_ sender: NSMenuItem) {
 		updateWeather()
 	}
 	
@@ -82,7 +82,7 @@ class StatusMenuController: NSObject, PreferencesWindowDelegate {//, WeatherAPID
 		NSLog(weather.description)
 	}*/
 
-	@IBAction func preferencesClicked(sender: NSMenuItem) {
+	@IBAction func preferencesClicked(_ sender: NSMenuItem) {
 		preferencesWindow.showWindow(nil)
 	}
 	

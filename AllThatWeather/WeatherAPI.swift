@@ -21,7 +21,7 @@ struct Weather: CustomStringConvertible {
 }
 
 protocol WeatherAPIDelegate {
-	func weatherDidUpdate(weather: Weather)
+	func weatherDidUpdate(_ weather: Weather)
 }
 
 class WeatherAPI {
@@ -33,19 +33,19 @@ class WeatherAPI {
 		self.delegate = delegate
 	}*/
 	
-	func fetchWeather(query: String, success: (Weather) -> Void) {
-		let session = NSURLSession.sharedSession()
+	func fetchWeather(_ query: String, success: @escaping (Weather) -> Void) {
+		let session = URLSession.shared
 		// url-escape the query string we're passed
-		let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-		let url = NSURL(string: "\(BASE_URL)?APPID=\(API_KEY)&units=imperial&q=\(escapedQuery!)")
-		let task = session.dataTaskWithURL(url!) { data, response, err in
+		let escapedQuery = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+		let url = URL(string: "\(BASE_URL)?APPID=\(API_KEY)&units=imperial&q=\(escapedQuery!)")
+		let task = session.dataTask(with: url!, completionHandler: { data, response, err in
 			// first check for a hard error
 			if let error = err {
 				NSLog("weather api error: \(error)")
 			}
 			
 			// then check the response code
-			if let httpResponse = response as? NSHTTPURLResponse {
+			if let httpResponse = response as? HTTPURLResponse {
 				switch httpResponse.statusCode {
 				case 200: // all good!
 					/*let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding) as! String
@@ -62,19 +62,19 @@ class WeatherAPI {
 				case 401: // unauthorized
 					NSLog("weather api returned an 'unauthorized' response. Did you set your API key?")
 				default:
-					NSLog("weather api returned response: %d %@", httpResponse.statusCode, NSHTTPURLResponse.localizedStringForStatusCode(httpResponse.statusCode))
+					NSLog("weather api returned response: %d %@", httpResponse.statusCode, HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))
 				}
 			}
-		}
+		}) 
 		task.resume()
 	}
 	
-	func weatherFromJSONData(data: NSData) -> Weather? {
+	func weatherFromJSONData(_ data: Data) -> Weather? {
 		typealias JSONDict = [String:AnyObject]
 		let json: JSONDict
 		
 		do {
-			json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! JSONDict
+			json = try JSONSerialization.jsonObject(with: data, options: []) as! JSONDict
 		} catch {
 			NSLog("JSON parsing failed: \(error)")
 			return nil
@@ -97,7 +97,7 @@ class WeatherAPI {
 		return weather
 	}
 	
-	func convertFahrenheitToCelsius(fahrenheitTempature: Float) -> Float {
+	func convertFahrenheitToCelsius(_ fahrenheitTempature: Float) -> Float {
 		return ((fahrenheitTempature - 32.0) / 1.8)
 	}
 }

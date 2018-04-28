@@ -14,14 +14,14 @@ class WeatherView: NSView {
 	@IBOutlet weak var cityTextField: NSTextField!
 	@IBOutlet weak var currentConditionsTextField: NSTextField!
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
         // Drawing code here.
     }
 	
-	func update(weather: Weather) {
-		dispatch_async(dispatch_get_main_queue()) {
+	func update(_ weather: Weather) {
+		DispatchQueue.main.async {
 			NSLog("\(weather.description)")
 			self.cityTextField.stringValue = weather.city
 			self.currentConditionsTextField.stringValue = "\(weather.currentTempInCelsius)°C and \(weather.conditions)"
